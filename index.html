@@ -29,6 +29,7 @@
             border-radius: 50%;
             overflow: hidden;
             transition: box-shadow 0.3s ease;
+            cursor: pointer; /* Cambia il cursore per indicare che è cliccabile */
         }
         .image-container img {
             width: 100%;
@@ -114,10 +115,7 @@
 <img id="hiddenImage" src="images/dj.png">
 
 <div class="image-container" id="imageContainer">
-    <img src="images/vynil.png" alt="Vinile" usemap="#image_map" id="vinylImage" />
-    <map name="image_map">
-        <area shape="circle" coords="78,78,67"/>
-    </map>
+    <img src="images/vynil.png" alt="Vinile" id="vinylImage" />
 </div>
 
 <audio id="scratchSound" src="sounds/scratch.mp3"></audio>
@@ -132,13 +130,16 @@
     const hiddenImage = document.getElementById('hiddenImage');
 
     vinylImage.addEventListener('click', () => {
-    console.log('Vinyl image clicked');
+        console.log('Vinyl image clicked');
         vinylImage.style.animation = 'scratch 1.5s linear';
         scratchSound.play();
         imageContainer.classList.add('active');
         vinylImage.style.pointerEvents = 'none';
         lightTransition.style.opacity = '1';
         lightTransition.style.animation = 'expandLight 1.5s ease-out';
+
+        // Log per verificare il suono
+        console.log('Playing sound:', scratchSound.src);
 
         setTimeout(showHiddenElements, 750);
 
@@ -148,9 +149,14 @@
     });
 
     function showHiddenElements() {
-            hiddenText.classList.add('active');
-            hiddenImage.classList.add('active');
-        }
+        hiddenText.classList.add('active');
+        hiddenImage.classList.add('active');
+        
+        // Log per verificare se gli elementi sono visibili
+        console.log('Mostrando gli elementi nascosti');
+        console.log('Hidden text class:', hiddenText.classList);
+        console.log('Hidden image class:', hiddenImage.classList);
+    }
 </script>
 </body>
 </html>
